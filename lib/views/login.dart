@@ -1,8 +1,10 @@
 import 'dart:io' show Platform;
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:personal_feed/util/auth.dart';
 import 'package:personal_feed/util/styles.dart';
 import 'package:personal_feed/util/colors.dart';
 
@@ -21,6 +23,20 @@ class _LoginState extends State<Login> {
   String email = '';
   String pass = '';
 
+  final AuthService _auth = AuthService();
+
+  Future loginUser() async {
+    dynamic result = await _auth.signInWithEmailPass(email, pass);
+    if(result is String) {
+      _showDialog('Login Error', result);
+    } else if (result is User) {
+      //User signed in
+      Navigator.pushNamedAndRemoveUntil(context,'/homePage', (route) => false);
+      //Navigator.pushNamedAndRemoveUntil(context, '/profile', (route) => false);
+    } else {
+      _showDialog('Login Error', result.toString());
+    }
+  }
   Future<void> _showDialog(String title, String message) async {
     bool isAndroid = Platform.isAndroid;
     return showDialog(
@@ -196,8 +212,9 @@ class _LoginState extends State<Login> {
                     setState(() {
                       loginCounter++;
                     });
-                    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const a()),
-                    );
+                    loginUser();
+                    /*Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const a()),
+                    );*/
                   } else {
                     _showDialog('Form Error', 'Your form is invalid');
                   }

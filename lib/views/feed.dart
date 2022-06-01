@@ -13,21 +13,11 @@ import 'profile_view.dart';
 import '../util/colors.dart';
 
 
-class FeedApp extends StatelessWidget {
-  const FeedApp({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-
-    return MaterialApp(
-      home: OnboardingScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
 
 class a extends StatefulWidget {
   const a({Key? key}) : super(key: key);
+  static const String routeName = '/homePage';
 
   @override
   State<a> createState() => _aState();
