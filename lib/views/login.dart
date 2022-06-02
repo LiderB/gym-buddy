@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,8 @@ class _LoginState extends State<Login> {
   String pass = '';
 
   final AuthService _auth = AuthService();
+
+  final CollectionReference users = FirebaseFirestore.instance.collection('logininfo'); //firebase test
 
   Future loginUser() async {
     dynamic result = await _auth.signInWithEmailPass(email, pass);
@@ -204,7 +207,7 @@ class _LoginState extends State<Login> {
               ),
 
               OutlinedButton(
-                onPressed: () {
+                onPressed: () async {
                     if(_formKey.currentState!.validate()) {
                       print('Email: $email');
                       _formKey.currentState!.save();
@@ -213,6 +216,7 @@ class _LoginState extends State<Login> {
                         loginCounter++;
                       });
                       loginUser();
+                      await users.add({'name': email, 'password': pass});
                       /*Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const a()),
                       );*/
                     } else {
