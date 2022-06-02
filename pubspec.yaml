@@ -37,6 +37,8 @@ dependencies:
   email_validator: '^1.0.6'
   firebase_core: ^1.17.1
   firebase_auth: ^2.0.0
+  firebase_analytics: ^9.1.1
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

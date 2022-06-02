@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:personal_feed/views/feed.dart';
 import 'package:personal_feed/views/login.dart';
 import 'package:personal_feed/views/walkthrough.dart';
+import 'package:personal_feed/views/welcome.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -25,9 +27,30 @@ void main() {
   ));
 }
 
-class MyFirebaseApp extends StatelessWidget {
+class MyFirebaseApp extends StatefulWidget {
 
+  @override
+  State<MyFirebaseApp> createState() => _MyFirebaseAppState();
+}
+
+class _MyFirebaseAppState extends State<MyFirebaseApp> {
   final Future<FirebaseApp> _init = Firebase.initializeApp();
+  int? firstLoad;
+  SharedPreferences? prefs;
+
+  decideRoute() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      firstLoad = (prefs!.getInt('appInitialLoad') ?? 0);
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    decideRoute();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +61,15 @@ class MyFirebaseApp extends StatelessWidget {
           return ErrorScreen(message: snapshot.error.toString());
         }
         if(snapshot.connectionState == ConnectionState.done) {
-          return const OnboardingScreen();
+          if(firstLoad == null) {
+            return Container();
+          } else if(firstLoad == 0) {
+            firstLoad = 1;
+            prefs!.setInt('appInitialLoad', firstLoad!);
+            return OnboardingScreen();
+          } else {
+            return Welcome();
+          }
         }
         return const WaitingScreen();
       },);

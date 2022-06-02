@@ -4,11 +4,14 @@ import 'package:personal_feed/views/signUp.dart';
 import 'package:personal_feed/util/styles.dart';
 import 'package:personal_feed/util/colors.dart';
 
+import '../util/analytics.dart';
+
 class Welcome extends StatelessWidget {
   const Welcome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         maintainBottomViewPadding: false,

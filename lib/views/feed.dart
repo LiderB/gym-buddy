@@ -49,6 +49,7 @@ class _aState extends State<a> {
 
               icon: Icon(Icons.home),
               label: 'Home',
+
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.search),

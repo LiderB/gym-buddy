@@ -111,6 +111,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     print(mailController.text);
                     print(usernameController.text);
                     print(passwordController.text);
+
                     Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const Welcome()),
                     );
                   },
