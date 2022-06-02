@@ -1,22 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:personal_feed/util/analytics.dart';
 import 'package:personal_feed/views/welcome.dart';
-
 import '../util/colors.dart';
-import 'feed.dart';
-
-/*void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
-    );
-  }
-} */
 
 class OnboardingContents {
   final String title;
@@ -77,6 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AppAnalytics.setScreenName("Walkthrough");
     SizeConfig().init(context);
     double width = SizeConfig.screenW!;
     double height = SizeConfig.screenH!;
@@ -148,7 +134,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ? Padding(
                     padding: const EdgeInsets.all(30),
                     child: ElevatedButton(
-                      onPressed: () {Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Welcome()),
+                      onPressed: () {AppAnalytics.setScreenName("Welcome");
+                        Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Welcome()),
                       );},
                       child: Text("START"),
                       style: ElevatedButton.styleFrom(
