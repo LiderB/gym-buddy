@@ -26,6 +26,8 @@ class _LoginState extends State<Login> {
   final AuthService _auth = AuthService();
 
   Future loginUser() async {
+    // Crashlytics deneme commenti silip login yapmaya çalıştığınızda crashlyticse bağlı olduğu gözükücektir.
+    // FirebaseCrashlytics.instance.crash()
     dynamic result = await _auth.signInWithEmailPass(email, pass);
     if(result is String) {
       _showDialog('Login Error', result);
