@@ -9,6 +9,7 @@ import 'package:personal_feed/util/auth.dart';
 import 'package:personal_feed/util/styles.dart';
 import 'package:personal_feed/util/colors.dart';
 
+import '../util/analytics.dart';
 import 'feed.dart';
 
 class Login extends StatefulWidget {
@@ -36,6 +37,7 @@ class _LoginState extends State<Login> {
       _showDialog('Login Error', result);
     } else if (result is User) {
       //User signed in
+      AppAnalytics.setScreenName("Feed");
       Navigator.pushNamedAndRemoveUntil(context,'/homePage', (route) => false);
       //Navigator.pushNamedAndRemoveUntil(context, '/profile', (route) => false);
     } else {
@@ -95,6 +97,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    AppAnalytics.setScreenName("Login"); print("Login");
     return Scaffold(
       appBar: AppBar(
         title: Text(

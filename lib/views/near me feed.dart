@@ -6,6 +6,7 @@ import 'package:personal_feed/ui/nearme_card.dart';
 import 'package:personal_feed/ui/profile_card.dart';
 import 'package:personal_feed/model/profile.dart';
 
+import '../util/analytics.dart';
 import '../util/colors.dart';
 
 List<Profile> profiles = [
@@ -210,7 +211,7 @@ class _NearMeViewState extends State<NearMeView> {
   }
   @override
   Widget build(BuildContext context) {
-    print('build');
+    AppAnalytics.setScreenName("Near Me"); print("Near Me");
 
     return Scaffold(
       appBar: AppBar(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../util/analytics.dart';
 import '../util/colors.dart';
 
 
@@ -13,6 +14,7 @@ class EditProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppAnalytics.setScreenName("Edit Profile"); print("Edit Profile");
     return Scaffold(
       appBar: AppBar(
 

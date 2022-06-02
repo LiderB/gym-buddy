@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_feed/util/colors.dart';
 import 'package:personal_feed/views/welcome.dart';
 
+import '../util/analytics.dart';
 import '../util/auth.dart';
 import '../util/styles.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppAnalytics.setScreenName("Sign Up"); print("Sign Up");
     return MaterialApp(
       title: _title,
       home: Scaffold(
@@ -58,6 +60,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       _showDialog('Register Error', result);
     } else if (result is User) {
       //User signed up
+      Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Welcome()),);
       print("result is user---------------------------");
       _showDialog('Successful', "You just registered to our app!");
     } else {

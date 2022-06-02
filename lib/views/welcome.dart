@@ -4,6 +4,8 @@ import 'package:personal_feed/views/signUp.dart';
 import 'package:personal_feed/util/styles.dart';
 import 'package:personal_feed/util/colors.dart';
 import 'package:personal_feed/util/auth.dart';
+
+import '../util/analytics.dart';
 class Welcome extends StatelessWidget {
   final AuthService _auth = AuthService();
   Welcome({Key? key}) : super(key: key);
@@ -83,6 +85,7 @@ class Welcome extends StatelessWidget {
                   flex: 1,
                   child: OutlinedButton(
                     onPressed: () {
+                      AppAnalytics.setScreenName("Sign Up");
                       Navigator.push(context,MaterialPageRoute(builder: (context) => const MyApp()),
                       );
 
@@ -111,6 +114,7 @@ class Welcome extends StatelessWidget {
                       onPressed: () async{
                         dynamic user = await _auth.signInWithGoogle();
                         if(user != null){
+
                           Navigator.pushNamedAndRemoveUntil(context,'/homePage', (route) => false);
                         }
                       },

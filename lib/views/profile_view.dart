@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:personal_feed/model/post.dart';
 import 'package:personal_feed/ui/efe_post_card.dart';
+import 'package:personal_feed/util/analytics.dart';
 import 'package:personal_feed/views/edit_profile_view.dart';
 import 'package:personal_feed/views/notifications_view.dart';
+import 'package:personal_feed/views/welcome.dart';
 
+import '../util/auth.dart';
 import '../util/colors.dart';
 
 class ProfileView extends StatefulWidget {
@@ -14,6 +17,7 @@ class ProfileView extends StatefulWidget {
 }
 int posts = 0;
 class _ProfileViewState extends State<ProfileView> {
+  final AuthService _auth = AuthService();
   List<Post> posts = [
     Post.namedParams(text: 'Hello World 1', date: 'March 31', likes: 10, comments: 0),
     Post.namedParams(text: 'Hello World 2', date: 'March 30', likes: 20, comments: 5),
@@ -41,18 +45,19 @@ class _ProfileViewState extends State<ProfileView> {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
+    AppAnalytics.setScreenName("Profile"); print("Profile");
 
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
             icon: const Icon(
-              Icons.settings,
+              Icons.logout,
               color: AppColors.buttonColor,
             ),
             onPressed: () {
-              // do something
+              _auth.signOut();
+              Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Welcome()),);
             },
           ),
           IconButton(
@@ -62,6 +67,7 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder:(context) => NotificationView()) );
+              AppAnalytics.setScreenName("Notification");
 
             },
           )
@@ -189,6 +195,7 @@ class _ProfileViewState extends State<ProfileView> {
                         onPressed: () {
                           Navigator.push(context,MaterialPageRoute(builder: (context) => const EditProfile()),
                           );
+                          AppAnalytics.setScreenName("Edit Profile");
 
                     },
                         child: Text("Edit Profile"),

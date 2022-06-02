@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../util/analytics.dart';
 import '../util/colors.dart';
 
 
@@ -13,7 +14,7 @@ class NewPostView extends StatefulWidget {
 class _NewPostViewState extends State<NewPostView> {
   @override
   Widget build(BuildContext context) {
-    print('build');
+    AppAnalytics.setScreenName("New Post"); print("New Post");
 
     return Scaffold(
       appBar: AppBar(

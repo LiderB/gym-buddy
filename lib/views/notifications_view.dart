@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_feed/model/notifications.dart';
 import 'package:personal_feed/ui/notification_card.dart';
 
+import '../util/analytics.dart';
 import '../util/colors.dart';
 
 class NotificationView extends StatefulWidget {
@@ -36,7 +37,7 @@ class _NotificationViewState extends State<NotificationView> {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
+    AppAnalytics.setScreenName("Notifications"); print("Notifications");
 
     return Scaffold(
       appBar: AppBar(

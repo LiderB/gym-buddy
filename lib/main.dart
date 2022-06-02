@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:personal_feed/util/analytics.dart';
 import 'package:personal_feed/views/feed.dart';
 import 'package:personal_feed/views/login.dart';
 import 'package:personal_feed/views/walkthrough.dart';
@@ -67,6 +68,7 @@ class _MyFirebaseAppState extends State<MyFirebaseApp> {
             prefs!.setInt('appInitialLoad', firstLoad!);
             return OnboardingScreen();
           } else {
+            AppAnalytics.setScreenName("Welcome");
             return Welcome();
           }
         }

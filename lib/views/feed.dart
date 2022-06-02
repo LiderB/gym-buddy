@@ -9,6 +9,7 @@ import 'package:personal_feed/model/post.dart';
 import 'package:personal_feed/model/profile.dart';
 import 'package:personal_feed/views/walkthrough.dart';
 
+import '../util/analytics.dart';
 import 'profile_view.dart';
 import '../util/colors.dart';
 
@@ -31,11 +32,14 @@ class _aState extends State<a> {
     NewPostView(),
     NearMeView(),//this is a stateful widget on a separate file
     ProfileView(),//this is a stateful widget on a separate file
-    //this is a stateful widget on a separate file
+
 
   ];
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: _pages.elementAt(_currentIndex),
         bottomNavigationBar: BottomNavigationBar(
@@ -87,6 +91,7 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppAnalytics.setScreenName("Feed"); print("Feed");
 
     return Scaffold(
       appBar: AppBar(

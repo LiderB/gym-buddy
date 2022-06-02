@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_feed/ui/profile_card.dart';
 import 'package:personal_feed/model/profile.dart';
 
+import '../util/analytics.dart';
 import '../util/colors.dart';
 
 List<Profile> profiles = [
@@ -209,7 +210,7 @@ class _ExploreViewState extends State<ExploreView> {
   }
   @override
   Widget build(BuildContext context) {
-    print('build');
+    AppAnalytics.setScreenName("Explore"); print("Explore");
 
     return Scaffold(
       appBar: AppBar(
