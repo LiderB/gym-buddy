@@ -17,7 +17,7 @@ class Welcome extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(60.0),
+              padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
               child: Image.network(
                   'https://pbs.twimg.com/profile_images/687300887971270656/_j-bPjAp_400x400.png'),
             ),
@@ -35,12 +35,10 @@ class Welcome extends StatelessWidget {
               ),
             ),
 
-            Spacer(),
-
             Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0, vertical: 16.0),
+                    horizontal: 20.0, vertical: 10.0),
                 child: Expanded(
                   flex: 1,
                   child: OutlinedButton(
@@ -80,7 +78,7 @@ class Welcome extends StatelessWidget {
             Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0, vertical: 16.0),
+                    horizontal: 20.0, vertical: 10.0),
                 child: Expanded(
                   flex: 1,
                   child: OutlinedButton(
@@ -106,7 +104,7 @@ class Welcome extends StatelessWidget {
             Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0, vertical: 16.0),
+                    horizontal: 20.0, vertical: 10.0),
                 child: Expanded(
                   flex: 1,
                   child: OutlinedButton(
