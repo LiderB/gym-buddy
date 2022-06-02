@@ -3,9 +3,10 @@ import 'package:personal_feed/views/login.dart';
 import 'package:personal_feed/views/signUp.dart';
 import 'package:personal_feed/util/styles.dart';
 import 'package:personal_feed/util/colors.dart';
-
+import 'package:personal_feed/util/auth.dart';
 class Welcome extends StatelessWidget {
-  const Welcome({Key? key}) : super(key: key);
+  final AuthService _auth = AuthService();
+  Welcome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +103,33 @@ class Welcome extends StatelessWidget {
                 ),
               ),
             ),
-
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 16.0),
+                child: Expanded(
+                  flex: 1,
+                  child: OutlinedButton(
+                      onPressed: () async{
+                        dynamic user = await _auth.signInWithGoogle();
+                        if(user != null){
+                          Navigator.pushNamedAndRemoveUntil(context,'/homePage', (route) => false);
+                        }
+                      },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 55),
+                      child: Text(
+                        'Google',
+                        style: welcomeLoginandSignupButtonTextStyle,
+                      ),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

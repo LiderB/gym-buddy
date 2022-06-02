@@ -148,7 +148,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ? Padding(
                     padding: const EdgeInsets.all(30),
                     child: ElevatedButton(
-                      onPressed: () {Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const Welcome()),
+                      onPressed: () {Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Welcome()),
                       );},
                       child: Text("START"),
                       style: ElevatedButton.styleFrom(

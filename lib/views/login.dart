@@ -205,20 +205,20 @@ class _LoginState extends State<Login> {
 
               OutlinedButton(
                 onPressed: () {
-                  if(_formKey.currentState!.validate()) {
-                    print('Email: $email');
-                    _formKey.currentState!.save();
-                    print('Email: $email');
-                    setState(() {
-                      loginCounter++;
-                    });
-                    loginUser();
-                    /*Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const a()),
-                    );*/
-                  } else {
-                    _showDialog('Form Error', 'Your form is invalid');
-                  }
-                },
+                    if(_formKey.currentState!.validate()) {
+                      print('Email: $email');
+                      _formKey.currentState!.save();
+                      print('Email: $email');
+                      setState(() {
+                        loginCounter++;
+                      });
+                      loginUser();
+                      /*Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const a()),
+                      );*/
+                    } else {
+                      _showDialog('Form Error', 'Your form is invalid');
+                    }
+                  },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12.0),
                   child: Text(
@@ -230,6 +230,7 @@ class _LoginState extends State<Login> {
                   backgroundColor: AppColors.primary,
                 ),
               ),
+
             ],
           ),
         ),
